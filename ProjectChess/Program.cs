@@ -7,9 +7,9 @@ namespace ProjectChess
     {
         static void Main(string[] args)
         {
-            Position p = new Position(3, 4);
+            BoardGame b = new BoardGame(8, 8);
 
-            Console.WriteLine(p);
+            Console.WriteLine("Okay");
         }
     }
 }
