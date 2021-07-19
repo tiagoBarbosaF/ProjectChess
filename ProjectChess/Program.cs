@@ -9,6 +9,8 @@ namespace ProjectChess
         {
             BoardGame b = new BoardGame(8, 8);
 
+            Screen.printBoard(b);
+
             Console.WriteLine("Okay");
         }
     }
