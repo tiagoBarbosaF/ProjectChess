@@ -14,5 +14,10 @@
             Brd = brd;
             QtdMoves = 0;
         }
+
+        public void incrementQteMoviments()
+        {
+            QtdMoves++;
+        }
     }
 }

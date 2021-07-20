@@ -39,6 +39,18 @@
             p.Position = pos;
         }
 
+        public Piece removePiece(Position pos)
+        {
+            if (piece(pos) == null)
+            {
+                return null;
+            }
+            Piece aux = piece(pos);
+            aux.Position = null;
+            Pieces[pos.Line, pos.Column] = null;
+            return aux;
+        }
+
         public bool validPosition(Position pos)
         {
             if (pos.Line < 0 || pos.Line >= Lines || pos.Column < 0 || pos.Column >= Columns)

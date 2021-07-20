@@ -10,16 +10,9 @@ namespace ProjectChess
         {
             try
             {
-                BoardGame b = new BoardGame(8, 8);
+                ChessMatch match = new ChessMatch();
 
-                b.placePiece(new Tower(Color.Black, b), new Position(0, 0));
-                b.placePiece(new Tower(Color.Black, b), new Position(1, 3));
-                b.placePiece(new King(Color.Black, b), new Position(0, 2));
-
-                b.placePiece(new Tower(Color.White, b), new Position(3, 5));
-                b.placePiece(new King(Color.White, b), new Position(5, 5));
-
-                Screen.printBoard(b);
+                Screen.printBoard(match.Brdg);
             }
             catch (BoardException e)
             {
