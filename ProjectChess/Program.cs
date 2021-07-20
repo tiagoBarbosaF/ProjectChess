@@ -20,6 +20,12 @@ namespace ProjectChess
                     Console.WriteLine();
                     Console.Write("Origin: ");
                     Position origin = Screen.readChessPosition().toPosition();
+
+                    bool[,] possiblePositions = match.Brdg.piece(origin).possibleMoviments();
+                    Console.Clear();
+                    Screen.printBoard(match.Brdg,possiblePositions);
+
+                    Console.WriteLine();
                     Console.Write("Destiny: ");
                     Position destiny = Screen.readChessPosition().toPosition();
 

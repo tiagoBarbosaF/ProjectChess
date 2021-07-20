@@ -1,6 +1,6 @@
 ﻿namespace ProjectChess.Board
 {
-    class Piece
+    abstract class Piece
     {
         public Position Position { get; set; }
         public Color Color { get; protected set; }
@@ -14,6 +14,8 @@
             Brd = brd;
             QtdMoves = 0;
         }
+
+        public abstract bool[,] possibleMoviments();
 
         public void incrementQteMoviments()
         {
