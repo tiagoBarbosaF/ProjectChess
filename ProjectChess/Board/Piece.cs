@@ -7,9 +7,9 @@
         public int QtdMoves { get; protected set; }
         public BoardGame Brd { get; protected set; }
 
-        public Piece(Position position, Color color, BoardGame brd)
+        public Piece(Color color, BoardGame brd)
         {
-            Position = position;
+            Position = null;
             Color = color;
             Brd = brd;
             QtdMoves = 0;
