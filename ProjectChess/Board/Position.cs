@@ -13,7 +13,7 @@
 
         public override string ToString()
         {
-            return $"Position: {Line}, {Column}";
+            return $"{Line}, {Column}";
         }
     }
 }

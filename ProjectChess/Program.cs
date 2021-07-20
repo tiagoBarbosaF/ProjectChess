@@ -8,20 +8,27 @@ namespace ProjectChess
     {
         static void Main(string[] args)
         {
-            try
-            {
-                BoardGame b = new BoardGame(8, 8);
+            //try
+            //{
+            //    boardgame b = new boardgame(8, 8);
 
-                b.placePiece(new Tower(Color.Black, b), new Position(0, 0));
-                b.placePiece(new Tower(Color.Black, b), new Position(1, 3));
-                b.placePiece(new King(Color.Orange, b), new Position(0, 2));
+            //    b.placepiece(new tower(color.black, b), new position(0, 0));
+            //    b.placepiece(new tower(color.black, b), new position(1, 3));
+            //    b.placepiece(new king(color.orange, b), new position(0, 2));
 
-                Screen.printBoard(b);
-            }
-            catch(BoardException e)
-            {
-                Console.WriteLine(e.Message);
-            }
+            //    screen.printboard(b);
+            //}
+            //catch (boardexception e)
+            //{
+            //    console.writeline(e.message);
+            //}
+
+            ChessPosition pos = new ChessPosition('c',7);
+
+            Console.WriteLine(pos);
+
+            Console.WriteLine(pos.toPosition());
+
         }
     }
 }
