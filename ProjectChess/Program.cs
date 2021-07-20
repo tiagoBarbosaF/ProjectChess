@@ -12,7 +12,19 @@ namespace ProjectChess
             {
                 ChessMatch match = new ChessMatch();
 
-                Screen.printBoard(match.Brdg);
+               while (!match.Finished)
+                {
+                    Console.Clear();
+                    Screen.printBoard(match.Brdg);
+
+                    Console.WriteLine();
+                    Console.Write("Origin: ");
+                    Position origin = Screen.readChessPosition().toPosition();
+                    Console.Write("Destiny: ");
+                    Position destiny = Screen.readChessPosition().toPosition();
+
+                    match.performMoviment(origin, destiny);
+                }
             }
             catch (BoardException e)
             {

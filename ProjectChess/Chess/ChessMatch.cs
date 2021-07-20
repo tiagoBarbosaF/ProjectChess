@@ -9,12 +9,14 @@ namespace ProjectChess.Chess
         public BoardGame Brdg { get; private set; }
         private int Turn;
         private Color CurrentPlayer;
+        public bool Finished { get; private set; }
 
         public ChessMatch()
         {
             Brdg = new BoardGame(8, 8);
             Turn = 1;
             CurrentPlayer = Color.White;
+            Finished = false;
             placePieces();
         }
 
