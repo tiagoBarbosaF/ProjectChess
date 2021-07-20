@@ -8,15 +8,20 @@ namespace ProjectChess
     {
         static void Main(string[] args)
         {
-            BoardGame b = new BoardGame(8, 8);
+            try
+            {
+                BoardGame b = new BoardGame(8, 8);
 
-            b.placePiece(new Tower(Color.Black, b), new Position(0,0));
-            b.placePiece(new Tower(Color.Black, b), new Position(1, 3));
-            b.placePiece(new King(Color.Orange, b), new Position(2, 4));
+                b.placePiece(new Tower(Color.Black, b), new Position(0, 0));
+                b.placePiece(new Tower(Color.Black, b), new Position(1, 3));
+                b.placePiece(new King(Color.Orange, b), new Position(0, 2));
 
-            Screen.printBoard(b);
-
-            Console.WriteLine("Okay");
+                Screen.printBoard(b);
+            }
+            catch(BoardException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
     }
 }
