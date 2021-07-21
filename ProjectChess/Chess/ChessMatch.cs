@@ -7,8 +7,8 @@ namespace ProjectChess.Chess
     class ChessMatch
     {
         public BoardGame Brdg { get; private set; }
-        private int Turn;
-        private Color CurrentPlayer;
+        public int Turn { get; private set; }
+        public Color CurrentPlayer { get; private set; }
         public bool Finished { get; private set; }
 
         public ChessMatch()
@@ -26,6 +26,48 @@ namespace ProjectChess.Chess
             p.incrementQteMoviments();
             Piece CapturePiece = Brdg.removePiece(destiny);
             Brdg.placePiece(p, destiny);
+        }
+
+        public void performPlay(Position origin, Position destiny)
+        {
+            performMoviment(origin, destiny);
+            Turn++;
+            changePlayer();
+        }
+
+        public void validOriginPosition(Position pos)
+        {
+            if(Brdg.piece(pos) == null)
+            {
+                throw new BoardException("There are no piece in origin moviment!");
+            } 
+            if (CurrentPlayer != Brdg.piece(pos).Color) {
+                throw new BoardException("The origin Piece is not yours!");
+            } 
+            if (!Brdg.piece(pos).existPossibleMoviments())
+            {
+                throw new BoardException("There are not possible moviments for this piece!");
+            }
+        }
+
+        public void validDestinyPosition(Position origin, Position destiny)
+        {
+            if (!Brdg.piece(origin).canMoveFor(destiny))
+            {
+                throw new BoardException("Invalid destiny position!");
+            }
+        }
+
+        private void changePlayer()
+        {
+            if(CurrentPlayer == Color.White)
+            {
+                CurrentPlayer = Color.Black;
+            }
+            else
+            {
+                CurrentPlayer = Color.White;
+            }
         }
 
         private void placePieces()
