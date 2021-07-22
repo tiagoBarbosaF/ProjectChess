@@ -17,10 +17,7 @@ namespace ProjectChess
                     try
                     {
                         Console.Clear();
-                        Screen.printBoard(match.Brdg);
-                        Console.WriteLine();
-                        Console.WriteLine($"Turn: {match.Turn}");
-                        Console.WriteLine($"Waiting for move: {match.CurrentPlayer}");
+                        Screen.printMatch(match);
 
                         Console.WriteLine();
                         Console.Write("Origin: ");

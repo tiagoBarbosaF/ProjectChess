@@ -42,5 +42,10 @@
         {
             QtdMoves++;
         }
+
+        public void decrementQteMoviments()
+        {
+            QtdMoves--;
+        }
     }
 }

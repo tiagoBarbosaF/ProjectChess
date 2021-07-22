@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using ProjectChess.Board;
 using ProjectChess.Chess;
 
@@ -6,12 +7,69 @@ namespace ProjectChess
 {
     class Screen
     {
+        public static void printMatch(ChessMatch match)
+        {
+            printCapturePiecesBlack(match);
+            Console.WriteLine();
+            printBoard(match.Brdg);
+            Console.WriteLine();
+            printCapturePiecesWhite(match);
+            //printCapturePieces(match);
+            Console.WriteLine();
+            Console.WriteLine($"\nTurn: {match.Turn}");
+            Console.WriteLine($"Waiting move: {match.CurrentPlayer}");
+            if (match.Check)
+            {
+                Console.WriteLine("You're in Check!");
+            }
+        }
+        public static void printCapturePieces(ChessMatch match)
+        {
+            Console.WriteLine("Captured Pieces:");
+            Console.Write("Whites: ");
+            printSet(match.capturePieces(Color.White));
+            Console.Write("\nBlacks: ");
+            printSet(match.capturePieces(Color.Black));
+        }
+
+        public static void printCapturePiecesWhite(ChessMatch match)
+        {
+            Console.WriteLine("Captured Pieces:");
+            Console.Write("Whites: ");
+            Console.Write("[");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            printSet(match.capturePieces(Color.Black));
+            Console.ForegroundColor = aux;
+            Console.Write("]");
+        }
+
+        public static void printCapturePiecesBlack(ChessMatch match)
+        {
+            Console.WriteLine("Captured Pieces:");
+            Console.Write("Blacks: ");
+            Console.Write("[");
+            printSet(match.capturePieces(Color.White));
+            Console.Write("]");
+            Console.WriteLine();
+        }
+
+        public static void printSet(HashSet<Piece> set)
+        {
+            //Console.Write("[");
+            foreach(Piece x in set)
+            {
+                Console.Write($"{x} ");
+            }
+            //Console.Write("]");
+        }
         public static void printBoard(BoardGame brd)
         {
-            for(int i = 0; i < brd.Lines; i++)
+            Console.WriteLine();
+            for (int i = 0; i < brd.Lines; i++)
             {
                 Console.Write($"{8 - i} ");
-                for(int j = 0; j < brd.Columns; j++)
+                for (int j = 0; j < brd.Columns; j++)
                 {
                     PiecePrint(brd.piece(i, j));
                 }
@@ -25,6 +83,7 @@ namespace ProjectChess
             ConsoleColor originalBackground = Console.BackgroundColor;
             ConsoleColor changedBackground = ConsoleColor.DarkGray;
 
+            Console.WriteLine();
             for (int i = 0; i < brd.Lines; i++)
             {
                 Console.Write($"{8 - i} ");
