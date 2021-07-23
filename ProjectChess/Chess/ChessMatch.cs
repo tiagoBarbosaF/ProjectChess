@@ -222,26 +222,39 @@ namespace ProjectChess.Chess
 
         private void placePieces()
         {
-            //placeNewPiece('c', 1, new Tower(Color.White,Brdg));
-            //placeNewPiece('c', 2, new Tower(Color.White,Brdg));
-            //placeNewPiece('d', 2, new Tower(Color.White,Brdg));
-            //placeNewPiece('e', 2, new Tower(Color.White,Brdg));
-            //placeNewPiece('e', 1, new Tower(Color.White,Brdg));
-            //placeNewPiece('d', 1, new King(Color.White, Brdg));
+            placeNewPiece('a', 1, new Tower(Color.White,Brdg));
+            placeNewPiece('b', 1, new Horse(Brdg, Color.White));
+            placeNewPiece('c', 1, new Bishop(Brdg, Color.White));
+            placeNewPiece('d', 1, new Queen(Brdg, Color.White));
+            placeNewPiece('e', 1, new King(Color.White,Brdg));
+            placeNewPiece('f', 1, new Bishop(Brdg, Color.White));
+            placeNewPiece('g', 1, new Horse(Brdg, Color.White));
+            placeNewPiece('h', 1, new Tower(Color.White, Brdg));
+            placeNewPiece('a', 2, new Peon(Brdg, Color.White));
+            placeNewPiece('b', 2, new Peon(Brdg, Color.White));
+            placeNewPiece('c', 2, new Peon(Brdg, Color.White));
+            placeNewPiece('d', 2, new Peon(Brdg, Color.White));
+            placeNewPiece('e', 2, new Peon(Brdg, Color.White));
+            placeNewPiece('f', 2, new Peon(Brdg, Color.White));
+            placeNewPiece('g', 2, new Peon(Brdg, Color.White));
+            placeNewPiece('h', 2, new Peon(Brdg, Color.White));
 
-            //placeNewPiece('c', 7, new Tower(Color.Black, Brdg));
-            //placeNewPiece('c', 8, new Tower(Color.Black, Brdg));
-            //placeNewPiece('d', 7, new Tower(Color.Black, Brdg));
-            //placeNewPiece('e', 7, new Tower(Color.Black, Brdg));
-            //placeNewPiece('e', 8, new Tower(Color.Black, Brdg));
-            //placeNewPiece('d', 8, new King(Color.Black, Brdg));
-
-            placeNewPiece('c',1, new Tower(Color.White,Brdg));
-            placeNewPiece('d',1, new King(Color.White,Brdg));
-            placeNewPiece('h',7, new Tower(Color.White,Brdg));
-            
-            placeNewPiece('a',8, new King(Color.Black,Brdg));
-            placeNewPiece('b',8, new Tower(Color.Black,Brdg));
+            placeNewPiece('a', 8, new Tower(Color.Black, Brdg));
+            placeNewPiece('b', 8, new Horse(Brdg, Color.Black));
+            placeNewPiece('c', 8, new Bishop(Brdg, Color.Black));
+            placeNewPiece('d', 8, new Queen(Brdg, Color.Black));
+            placeNewPiece('e', 8, new King(Color.Black, Brdg));
+            placeNewPiece('f', 8, new Bishop(Brdg, Color.Black));
+            placeNewPiece('g', 8, new Horse(Brdg, Color.Black));
+            placeNewPiece('h', 8, new Tower(Color.Black, Brdg));
+            placeNewPiece('a', 7, new Peon(Brdg, Color.Black));
+            placeNewPiece('b', 7, new Peon(Brdg, Color.Black));
+            placeNewPiece('c', 7, new Peon(Brdg, Color.Black));
+            placeNewPiece('d', 7, new Peon(Brdg, Color.Black));
+            placeNewPiece('e', 7, new Peon(Brdg, Color.Black));
+            placeNewPiece('f', 7, new Peon(Brdg, Color.Black));
+            placeNewPiece('g', 7, new Peon(Brdg, Color.Black));
+            placeNewPiece('h', 7, new Peon(Brdg, Color.Black));
         }
     }
 }
