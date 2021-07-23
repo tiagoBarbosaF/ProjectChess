@@ -17,10 +17,16 @@ namespace ProjectChess
             //printCapturePieces(match);
             Console.WriteLine();
             Console.WriteLine($"\nTurn: {match.Turn}");
-            Console.WriteLine($"Waiting move: {match.CurrentPlayer}");
-            if (match.Check)
+            if (!match.Finished)
             {
-                Console.WriteLine("You're in Check!");
+                Console.WriteLine($"Waiting move: {match.CurrentPlayer}");
+                if (match.Check)
+                {
+                    Console.WriteLine("You're in Check!");
+                }
+            } else
+            {
+                Console.WriteLine($"\nCHECKMATE!! ==>  Winner: {match.CurrentPlayer.ToString().ToUpper()} pieces!!  <==");
             }
         }
         public static void printCapturePieces(ChessMatch match)

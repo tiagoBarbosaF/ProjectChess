@@ -42,6 +42,8 @@ namespace ProjectChess
                         Console.ReadLine();
                     }
                 }
+                Console.Clear();
+                Screen.printMatch(match);
             }
             catch (BoardException e)
             {
