@@ -35,6 +35,27 @@ namespace ProjectChess.Chess
             {
                 Captured.Add(CapturePiece);
             }
+
+            // #specialmove small roque
+            if (p is King && destiny.Column == origin.Column + 2)
+            {
+                Position originT = new Position(origin.Line, origin.Column + 3);
+                Position destinyT = new Position(origin.Line, origin.Column + 1);
+                Piece T = Brdg.removePiece(originT);
+                T.incrementQteMoviments();
+                Brdg.placePiece(T, destinyT);
+            }
+
+            // #specialmove big roque
+            if (p is King && destiny.Column == origin.Column - 2)
+            {
+                Position originT = new Position(origin.Line, origin.Column - 4);
+                Position destinyT = new Position(origin.Line, origin.Column - 1);
+                Piece T = Brdg.removePiece(originT);
+                T.incrementQteMoviments();
+                Brdg.placePiece(T, destinyT);
+            }
+
             return CapturePiece;
         }
 
@@ -48,6 +69,27 @@ namespace ProjectChess.Chess
                 Captured.Remove(CapturePiece);
             }
             Brdg.placePiece(p, origin);
+
+            // #specialmove small roque
+            if (p is King && destiny.Column == origin.Column + 2)
+            {
+                Position originT = new Position(origin.Line, origin.Column + 3);
+                Position destinyT = new Position(origin.Line, origin.Column + 1);
+                Piece T = Brdg.removePiece(originT);
+                T.decrementQteMoviments();
+                Brdg.placePiece(T, originT);
+            }
+
+            // #specialmove small roque
+            if (p is King && destiny.Column == origin.Column - 2)
+            {
+                Position originT = new Position(origin.Line, origin.Column - 4);
+                Position destinyT = new Position(origin.Line, origin.Column - 1);
+                Piece T = Brdg.removePiece(originT);
+                T.decrementQteMoviments();
+                Brdg.placePiece(T, originT);
+            }
+
         }
 
         public void performPlay(Position origin, Position destiny)
