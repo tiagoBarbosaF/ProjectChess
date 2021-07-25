@@ -141,6 +141,22 @@ namespace ProjectChess.Chess
                 undoMoviment(origin, destiny, CapturePiece);
                 throw new BoardException("You can´t put yourself in Check!");
             }
+
+            Piece p = Brdg.piece(destiny);
+
+            // #specialmove Promotion
+            if (p is Peon)
+            {
+                if ((p.Color == Color.White && destiny.Line == 0) || (p.Color == Color.Black && destiny.Line == 7))
+                {
+                    p = Brdg.removePiece(destiny);
+                    Pieces.Remove(p);
+                    Piece Queen = new Queen(Brdg, p.Color);
+                    Brdg.placePiece(Queen, destiny);
+                    Pieces.Add(Queen);
+                }
+            }
+
             if (itIsCheck(adversary(CurrentPlayer)))
             {
                 Check = true;
@@ -159,8 +175,6 @@ namespace ProjectChess.Chess
                 Turn++;
                 changePlayer();
             }
-
-            Piece p = Brdg.piece(destiny);
 
 
             // #specialmove En Passant
