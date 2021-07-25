@@ -12,6 +12,7 @@ namespace ProjectChess.Chess
         public HashSet<Piece> Pieces;
         public HashSet<Piece> Captured;
         public bool Check { get; private set; }
+        public Piece VulnerableEnPassant { get; private set; }
 
         public ChessMatch()
         {
@@ -20,6 +21,7 @@ namespace ProjectChess.Chess
             CurrentPlayer = Color.White;
             Finished = false;
             Check = false;
+            VulnerableEnPassant = null;
             Pieces = new HashSet<Piece>();
             Captured = new HashSet<Piece>();
             placePieces();
@@ -56,6 +58,25 @@ namespace ProjectChess.Chess
                 Brdg.placePiece(T, destinyT);
             }
 
+            // #specialmove En Passant
+            if (p is Peon)
+            {
+                if (origin.Column != destiny.Column && CapturePiece == null)
+                {
+                    Position posP;
+                    if (p.Color == Color.White)
+                    {
+                        posP = new Position(destiny.Line + 1, destiny.Column);
+                    }
+                    else
+                    {
+                        posP = new Position(destiny.Line - 1, destiny.Column);
+                    }
+                    CapturePiece = Brdg.removePiece(posP);
+                    Captured.Add(CapturePiece);
+                }
+            }
+
             return CapturePiece;
         }
 
@@ -90,6 +111,25 @@ namespace ProjectChess.Chess
                 Brdg.placePiece(T, originT);
             }
 
+            // #specialmove En Passant
+            if (p is Peon)
+            {
+                if (origin.Column != destiny.Column && CapturePiece == VulnerableEnPassant)
+                {
+                    Piece peon = Brdg.removePiece(destiny);
+                    Position posP;
+                    if (p.Color == Color.White)
+                    {
+                        posP = new Position(3, destiny.Column);
+                    }
+                    else
+                    {
+                        posP = new Position(4, destiny.Column);
+                    }
+                    Brdg.placePiece(peon, posP);
+                }
+            }
+
         }
 
         public void performPlay(Position origin, Position destiny)
@@ -118,6 +158,19 @@ namespace ProjectChess.Chess
             {
                 Turn++;
                 changePlayer();
+            }
+
+            Piece p = Brdg.piece(destiny);
+
+
+            // #specialmove En Passant
+            if (p is Peon && (destiny.Line == origin.Line - 2 || destiny.Line == origin.Line + 2))
+            {
+                VulnerableEnPassant = p;
+            }
+            else
+            {
+                VulnerableEnPassant = null;
             }
         }
 
@@ -274,14 +327,14 @@ namespace ProjectChess.Chess
             placeNewPiece('f', 1, new Bishop(Brdg, Color.White));
             placeNewPiece('g', 1, new Horse(Brdg, Color.White));
             placeNewPiece('h', 1, new Tower(Color.White, Brdg));
-            placeNewPiece('a', 2, new Peon(Brdg, Color.White));
-            placeNewPiece('b', 2, new Peon(Brdg, Color.White));
-            placeNewPiece('c', 2, new Peon(Brdg, Color.White));
-            placeNewPiece('d', 2, new Peon(Brdg, Color.White));
-            placeNewPiece('e', 2, new Peon(Brdg, Color.White));
-            placeNewPiece('f', 2, new Peon(Brdg, Color.White));
-            placeNewPiece('g', 2, new Peon(Brdg, Color.White));
-            placeNewPiece('h', 2, new Peon(Brdg, Color.White));
+            placeNewPiece('a', 2, new Peon(Brdg, Color.White, this));
+            placeNewPiece('b', 2, new Peon(Brdg, Color.White, this));
+            placeNewPiece('c', 2, new Peon(Brdg, Color.White, this));
+            placeNewPiece('d', 2, new Peon(Brdg, Color.White, this));
+            placeNewPiece('e', 2, new Peon(Brdg, Color.White, this));
+            placeNewPiece('f', 2, new Peon(Brdg, Color.White, this));
+            placeNewPiece('g', 2, new Peon(Brdg, Color.White, this));
+            placeNewPiece('h', 2, new Peon(Brdg, Color.White, this));
 
             placeNewPiece('a', 8, new Tower(Color.Black, Brdg));
             placeNewPiece('b', 8, new Horse(Brdg, Color.Black));
@@ -291,14 +344,14 @@ namespace ProjectChess.Chess
             placeNewPiece('f', 8, new Bishop(Brdg, Color.Black));
             placeNewPiece('g', 8, new Horse(Brdg, Color.Black));
             placeNewPiece('h', 8, new Tower(Color.Black, Brdg));
-            placeNewPiece('a', 7, new Peon(Brdg, Color.Black));
-            placeNewPiece('b', 7, new Peon(Brdg, Color.Black));
-            placeNewPiece('c', 7, new Peon(Brdg, Color.Black));
-            placeNewPiece('d', 7, new Peon(Brdg, Color.Black));
-            placeNewPiece('e', 7, new Peon(Brdg, Color.Black));
-            placeNewPiece('f', 7, new Peon(Brdg, Color.Black));
-            placeNewPiece('g', 7, new Peon(Brdg, Color.Black));
-            placeNewPiece('h', 7, new Peon(Brdg, Color.Black));
+            placeNewPiece('a', 7, new Peon(Brdg, Color.Black, this));
+            placeNewPiece('b', 7, new Peon(Brdg, Color.Black, this));
+            placeNewPiece('c', 7, new Peon(Brdg, Color.Black, this));
+            placeNewPiece('d', 7, new Peon(Brdg, Color.Black, this));
+            placeNewPiece('e', 7, new Peon(Brdg, Color.Black, this));
+            placeNewPiece('f', 7, new Peon(Brdg, Color.Black, this));
+            placeNewPiece('g', 7, new Peon(Brdg, Color.Black, this));
+            placeNewPiece('h', 7, new Peon(Brdg, Color.Black, this));
         }
     }
 }
