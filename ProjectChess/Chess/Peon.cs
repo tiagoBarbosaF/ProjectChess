@@ -31,29 +31,30 @@ namespace ProjectChess.Chess
 
             Position pos = new Position(0, 0);
 
-            if(Color == Color.White)
+            if (Color == Color.White)
             {
                 pos.setValues(Position.Line - 1, Position.Column);
-                if(Brdg.validPosition(pos) && free(pos))
+                if (Brdg.validPosition(pos) && free(pos))
                 {
                     mat[pos.Line, pos.Column] = true;
                 }
                 pos.setValues(Position.Line - 2, Position.Column);
-                if (Brdg.validPosition(pos) && free(pos))
+                if (Brdg.validPosition(pos) && free(pos) && QtdMoves == 0)
                 {
                     mat[pos.Line, pos.Column] = true;
                 }
                 pos.setValues(Position.Line - 1, Position.Column - 1);
-                if (Brdg.validPosition(pos) && free(pos))
+                if (Brdg.validPosition(pos) && thereIsEnemy(pos))
                 {
                     mat[pos.Line, pos.Column] = true;
                 }
                 pos.setValues(Position.Line - 1, Position.Column + 1);
-                if (Brdg.validPosition(pos) && free(pos))
+                if (Brdg.validPosition(pos) && thereIsEnemy(pos))
                 {
                     mat[pos.Line, pos.Column] = true;
                 }
-            } else
+            }
+            else
             {
                 pos.setValues(Position.Line + 1, Position.Column);
                 if (Brdg.validPosition(pos) && free(pos))
@@ -61,17 +62,17 @@ namespace ProjectChess.Chess
                     mat[pos.Line, pos.Column] = true;
                 }
                 pos.setValues(Position.Line + 2, Position.Column);
-                if (Brdg.validPosition(pos) && free(pos))
+                if (Brdg.validPosition(pos) && free(pos) && QtdMoves == 0)
                 {
                     mat[pos.Line, pos.Column] = true;
                 }
                 pos.setValues(Position.Line + 1, Position.Column - 1);
-                if (Brdg.validPosition(pos) && free(pos))
+                if (Brdg.validPosition(pos) && thereIsEnemy(pos))
                 {
                     mat[pos.Line, pos.Column] = true;
                 }
                 pos.setValues(Position.Line + 1, Position.Column + 1);
-                if (Brdg.validPosition(pos) && free(pos))
+                if (Brdg.validPosition(pos) && thereIsEnemy(pos))
                 {
                     mat[pos.Line, pos.Column] = true;
                 }

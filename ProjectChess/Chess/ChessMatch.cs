@@ -25,13 +25,13 @@ namespace ProjectChess.Chess
             placePieces();
         }
 
-        public Piece performMoviment (Position origin, Position destiny)
+        public Piece performMoviment(Position origin, Position destiny)
         {
             Piece p = Brdg.removePiece(origin);
             p.incrementQteMoviments();
             Piece CapturePiece = Brdg.removePiece(destiny);
             Brdg.placePiece(p, destiny);
-            if(CapturePiece != null)
+            if (CapturePiece != null)
             {
                 Captured.Add(CapturePiece);
             }
@@ -63,7 +63,7 @@ namespace ProjectChess.Chess
         {
             Piece p = Brdg.removePiece(destiny);
             p.decrementQteMoviments();
-            if(CapturePiece != null)
+            if (CapturePiece != null)
             {
                 Brdg.placePiece(CapturePiece, destiny);
                 Captured.Remove(CapturePiece);
@@ -123,13 +123,14 @@ namespace ProjectChess.Chess
 
         public void validOriginPosition(Position pos)
         {
-            if(Brdg.piece(pos) == null)
+            if (Brdg.piece(pos) == null)
             {
                 throw new BoardException("There are no piece in origin moviment!");
-            } 
-            if (CurrentPlayer != Brdg.piece(pos).Color) {
+            }
+            if (CurrentPlayer != Brdg.piece(pos).Color)
+            {
                 throw new BoardException("The origin Piece is not yours!");
-            } 
+            }
             if (!Brdg.piece(pos).existPossibleMoviments())
             {
                 throw new BoardException("There are not possible moviments for this piece!");
@@ -146,7 +147,7 @@ namespace ProjectChess.Chess
 
         private void changePlayer()
         {
-            if(CurrentPlayer == Color.White)
+            if (CurrentPlayer == Color.White)
             {
                 CurrentPlayer = Color.Black;
             }
@@ -159,9 +160,9 @@ namespace ProjectChess.Chess
         public HashSet<Piece> capturePieces(Color color)
         {
             HashSet<Piece> aux = new HashSet<Piece>();
-            foreach(Piece x in Captured)
+            foreach (Piece x in Captured)
             {
-                if(x.Color == color)
+                if (x.Color == color)
                 {
                     aux.Add(x);
                 }
@@ -172,9 +173,9 @@ namespace ProjectChess.Chess
         public HashSet<Piece> piecesInGame(Color color)
         {
             HashSet<Piece> aux = new HashSet<Piece>();
-            foreach(Piece x in Pieces)
+            foreach (Piece x in Pieces)
             {
-                if(x.Color == color)
+                if (x.Color == color)
                 {
                     aux.Add(x);
                 }
@@ -183,9 +184,9 @@ namespace ProjectChess.Chess
             return aux;
         }
 
-        private Color adversary (Color color)
+        private Color adversary(Color color)
         {
-            if(color == Color.White)
+            if (color == Color.White)
             {
                 return Color.Black;
             }
@@ -195,11 +196,11 @@ namespace ProjectChess.Chess
             }
         }
 
-        private Piece king (Color color)
+        private Piece king(Color color)
         {
-            foreach(Piece x in piecesInGame(color))
+            foreach (Piece x in piecesInGame(color))
             {
-                if(x is King)
+                if (x is King)
                 {
                     return x;
                 }
@@ -210,12 +211,12 @@ namespace ProjectChess.Chess
         public bool itIsCheck(Color color)
         {
             Piece K = king(color);
-            if(K == null)
+            if (K == null)
             {
                 throw new BoardException($"Not have a King with color {color} on Board Game!");
             }
 
-            foreach(Piece x in piecesInGame(adversary(color)))
+            foreach (Piece x in piecesInGame(adversary(color)))
             {
                 bool[,] mat = x.possibleMoviments();
                 if (mat[K.Position.Line, K.Position.Column])
@@ -232,14 +233,15 @@ namespace ProjectChess.Chess
             {
                 return false;
             }
-            foreach(Piece x in piecesInGame(color))
+            foreach (Piece x in piecesInGame(color))
             {
                 bool[,] mat = x.possibleMoviments();
-                for(int i = 0; i < Brdg.Lines; i++)
+                for (int i = 0; i < Brdg.Lines; i++)
                 {
-                    for(int j = 0; j < Brdg.Columns; j++)
+                    for (int j = 0; j < Brdg.Columns; j++)
                     {
-                        if(mat[i, j]){
+                        if (mat[i, j])
+                        {
                             Position origin = x.Position;
                             Position destiny = new Position(i, j);
                             Piece capturePiece = performMoviment(origin, destiny);
@@ -264,11 +266,11 @@ namespace ProjectChess.Chess
 
         private void placePieces()
         {
-            placeNewPiece('a', 1, new Tower(Color.White,Brdg));
+            placeNewPiece('a', 1, new Tower(Color.White, Brdg));
             placeNewPiece('b', 1, new Horse(Brdg, Color.White));
             placeNewPiece('c', 1, new Bishop(Brdg, Color.White));
             placeNewPiece('d', 1, new Queen(Brdg, Color.White));
-            placeNewPiece('e', 1, new King(Color.White,Brdg));
+            placeNewPiece('e', 1, new King(Color.White, Brdg, this));
             placeNewPiece('f', 1, new Bishop(Brdg, Color.White));
             placeNewPiece('g', 1, new Horse(Brdg, Color.White));
             placeNewPiece('h', 1, new Tower(Color.White, Brdg));
@@ -285,7 +287,7 @@ namespace ProjectChess.Chess
             placeNewPiece('b', 8, new Horse(Brdg, Color.Black));
             placeNewPiece('c', 8, new Bishop(Brdg, Color.Black));
             placeNewPiece('d', 8, new Queen(Brdg, Color.Black));
-            placeNewPiece('e', 8, new King(Color.Black, Brdg));
+            placeNewPiece('e', 8, new King(Color.Black, Brdg, this));
             placeNewPiece('f', 8, new Bishop(Brdg, Color.Black));
             placeNewPiece('g', 8, new Horse(Brdg, Color.Black));
             placeNewPiece('h', 8, new Tower(Color.Black, Brdg));

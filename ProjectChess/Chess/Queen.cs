@@ -75,7 +75,7 @@ namespace ProjectChess.Chess
             }
 
             // Northweast
-            pos.setValues(Position.Line - 1, Position.Column = -1);
+            pos.setValues(Position.Line - 1, Position.Column - 1);
             while (Brdg.validPosition(pos) && canMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
@@ -83,11 +83,11 @@ namespace ProjectChess.Chess
                 {
                     break;
                 }
-                pos.setValues(pos.Line = -1, pos.Column - 1);
+                pos.setValues(pos.Line - 1, pos.Column - 1);
             }
 
             // North-east
-            pos.setValues(Position.Line - 1, Position.Column = +1);
+            pos.setValues(Position.Line - 1, Position.Column + 1);
             while (Brdg.validPosition(pos) && canMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
@@ -95,11 +95,11 @@ namespace ProjectChess.Chess
                 {
                     break;
                 }
-                pos.setValues(pos.Line = -1, pos.Column + 1);
+                pos.setValues(pos.Line - 1, pos.Column + 1);
             }
 
             // South-east
-            pos.setValues(Position.Line + 1, Position.Column = +1);
+            pos.setValues(Position.Line + 1, Position.Column + 1);
             while (Brdg.validPosition(pos) && canMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
@@ -107,11 +107,11 @@ namespace ProjectChess.Chess
                 {
                     break;
                 }
-                pos.setValues(pos.Line = +1, pos.Column + 1);
+                pos.setValues(pos.Line + 1, pos.Column + 1);
             }
 
             // Southweast
-            pos.setValues(Position.Line + 1, Position.Column = -1);
+            pos.setValues(Position.Line + 1, Position.Column - 1);
             while (Brdg.validPosition(pos) && canMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
@@ -119,7 +119,7 @@ namespace ProjectChess.Chess
                 {
                     break;
                 }
-                pos.setValues(pos.Line = +1, pos.Column - 1);
+                pos.setValues(pos.Line + 1, pos.Column - 1);
             }
             return mat;
         }

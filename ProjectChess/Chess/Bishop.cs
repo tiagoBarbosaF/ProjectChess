@@ -27,19 +27,19 @@ namespace ProjectChess.Chess
             Position pos = new Position(0, 0);
 
             // Northweast
-            pos.setValues(Position.Line - 1, Position.Column = - 1);
-            while(Brdg.validPosition(pos) && canMove(pos))
+            pos.setValues(Position.Line - 1, Position.Column - 1);
+            while (Brdg.validPosition(pos) && canMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
-                if(Brdg.piece(pos) != null && Brdg.piece(pos).Color != Color)
+                if (Brdg.piece(pos) != null && Brdg.piece(pos).Color != Color)
                 {
                     break;
                 }
-                pos.setValues(pos.Line = - 1, pos.Column - 1);
+                pos.setValues(pos.Line - 1, pos.Column - 1);
             }
 
             // North-east
-            pos.setValues(Position.Line - 1, Position.Column = + 1);
+            pos.setValues(Position.Line - 1, Position.Column + 1);
             while (Brdg.validPosition(pos) && canMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
@@ -47,11 +47,11 @@ namespace ProjectChess.Chess
                 {
                     break;
                 }
-                pos.setValues(pos.Line = - 1, pos.Column + 1);
+                pos.setValues(pos.Line - 1, pos.Column + 1);
             }
 
             // South-east
-            pos.setValues(Position.Line + 1, Position.Column = + 1);
+            pos.setValues(Position.Line + 1, Position.Column + 1);
             while (Brdg.validPosition(pos) && canMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
@@ -59,11 +59,11 @@ namespace ProjectChess.Chess
                 {
                     break;
                 }
-                pos.setValues(pos.Line = + 1, pos.Column + 1);
+                pos.setValues(pos.Line + 1, pos.Column + 1);
             }
 
             // Southweast
-            pos.setValues(Position.Line + 1, Position.Column = - 1);
+            pos.setValues(Position.Line + 1, Position.Column - 1);
             while (Brdg.validPosition(pos) && canMove(pos))
             {
                 mat[pos.Line, pos.Column] = true;
@@ -71,7 +71,7 @@ namespace ProjectChess.Chess
                 {
                     break;
                 }
-                pos.setValues(pos.Line = + 1, pos.Column - 1);
+                pos.setValues(pos.Line + 1, pos.Column - 1);
             }
             return mat;
         }
